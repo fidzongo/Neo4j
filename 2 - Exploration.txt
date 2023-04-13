@@ -1,0 +1,58 @@
+#################################################################################
+###			  Requêtes de validations			      ###
+#################################################################################
+
+1/ Le nombre de correspondances par station 
+
+//# Dans les graphes la liaison des correspondances est représentée par M
+
+MATCH (s1)-[:M]->(s2) 
+MATCH (s1)<-[:M]-(s2) 
+RETURN s1.nom_clean AS station, count(*) AS nombre ORDER BY station;
+
+2/ Le nombre de stations à moins de deux kilomètres de la station LADEFENSE (on pourra prendre la distance brute sans considération de relation)
+
+MATCH (s1 {nom_clean: "LADEFENSE"})
+MATCH (s2) WHERE s2.nom_clean <> s1.nom_clean
+AND SQRT((s2.latitude - s1.latitude)*(s2.latitude - s1.latitude) + (s2.longitude - s1.longitude)*(s2.longitude - s1.longitude))/1000 <= 2
+RETURN count(*);
+
+
+3/ Le temps qu'il faut pour aller en metro de LADEFENSE à CHATEAUDEVINCENNES
+
+//# temps_en_metro exprimé en minutes
+MATCH (s1 {nom_clean: "LADEFENSE"})
+MATCH (s2 {nom_clean: "CHATEAUDEVINCENNES"})
+RETURN ((SQRT((s2.latitude - s1.latitude)*(s2.latitude - s1.latitude) + (s2.longitude - s1.longitude)*(s2.longitude - s1.longitude))/1000)/40)*60 AS temps_en_metro;
+
+4/ Le temps qu'il faut pour aller à pied de LADEFENSE à CHATEAUDEVINCENNES (on pourra considérer que tout le chemin se fait à pied, sans considération de relation) 
+
+//# temp_a_pied exprimé en heure
+MATCH (s1 {nom_clean: "LADEFENSE"})
+MATCH (s2 {nom_clean: "CHATEAUDEVINCENNES"})
+RETURN ((SQRT((s2.latitude - s1.latitude)*(s2.latitude - s1.latitude) + (s2.longitude - s1.longitude)*(s2.longitude - s1.longitude))/1000)/4) AS temp_a_pied;
+
+5/ Est-il plus rapide de faire un changement à SAINTLAZARE pour aller de MONTPARNASSEBIENVENUE à GABRIELPERI ? 
+
+//# - Pour aller directement de MONTPARNASSEBIENVENUE à GABRIELPERI :
+MATCH (s1 {nom_clean: "MONTPARNASSEBIENVENUE"})
+MATCH (s2 {nom_clean: "GABRIELPERI"})
+//# - Pour aller de MONTPARNASSEBIENVENUE à GABRIELPERI en passant par SAINTLAZARE:
+MATCH (s3 {nom_clean: "MONTPARNASSEBIENVENUE"})
+MATCH (s4 {nom_clean: "STLAZARE"})
+MATCH (s5 {nom_clean: "GABRIELPERI"})
+RETURN DISTINCT ((SQRT((s2.latitude - s1.latitude)*(s2.latitude - s1.latitude) + (s2.longitude - s1.longitude)*(s2.longitude - s1.longitude))/1000)/40)*60 AS temps_trajet_direct, ((((SQRT((s4.latitude - s3.latitude)*(s4.latitude - s3.latitude) + (s4.longitude - s3.longitude)*(s4.longitude - s3.longitude))/1000)/40)*60) + (((SQRT((s5.latitude - s4.latitude)*(s5.latitude - s4.latitude) + (s5.longitude - s4.longitude)*(s5.longitude - s4.longitude))/1000)/40)*60)) AS temps_trajet_avec_changement
+
+6/ Nombre de stations se trouvant dans un rayon de 10 stations par train autour de SAINTLAZARE
+
+MATCH (s1 {nom_clean: "STLAZARE"})-[*10]-> (s2) WHERE s2.nom_clean <> s1.nom_clean
+RETURN DISTINCT s2;
+
+
+7/ Nombre de stations se trouvant dans un rayon de 20 minutes par train autour de SAINTLAZARE 
+# Les metro 3, 9, 12, 13 et 14 passent par saint lazare
+# Dans notre cas le metro 9 n'a pas d'enregistrement correpondante pour saint lazare dans le fichier 
+
+MATCH (s1 {nom_clean: "STLAZARE"})-[:M3|M12|M13|M14]->( s2)
+WHERE ((SQRT((s2.latitude - s1.latitude)*(s2.latitude - s1.latitude) + (s2.longitude - s1.longitude)*(s2.longitude - s1.longitude))/1000)/40)*60 <= 20
+RETURN COUNT(s2);

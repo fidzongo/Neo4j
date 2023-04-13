@@ -1,0 +1,116 @@
+#################################################################################
+###			 Les actions 1, 2, 3 et 4 sont à lancer dans l'ordre			  ###
+#################################################################################
+
+1/ Chargement du fichier et création des noeuds (station de metro):
+
+LOAD CSV WITH HEADERS FROM 'https://github.com/pauldechorgnat/cool-datasets/raw/master/ratp/stations.csv' AS row
+CREATE (:station {nom_clean : row.nom_clean , 
+                    nom_gare :row.nom_gare , 
+                    latitude: toFloat(row.x), 
+                    longitude: toFloat(row.y), 
+                    trafic: row.Trafic,
+					ville: row.Ville,
+					ligne: row.ligne
+});
+
+
+2/ Chargement du fichier et création des liaisons entre station:
+
+LOAD CSV WITH HEADERS FROM 'https://github.com/pauldechorgnat/cool-datasets/raw/master/ratp/liaisons.csv' AS row
+MATCH (s1:station {ligne: "1"}) WHERE s1.nom_clean = row.start AND s1.ligne = row.ligne
+MATCH (s2:station {ligne: "1"}) WHERE s2.nom_clean = row.stop AND s2.ligne = row.ligne AND s2.nom_clean <> s1.nom_clean
+MERGE (s1)-[:M1 {name: row.ligne}]->(s2);
+
+LOAD CSV WITH HEADERS FROM 'https://github.com/pauldechorgnat/cool-datasets/raw/master/ratp/liaisons.csv' AS row
+MATCH (s1:station {ligne: "2"}) WHERE s1.nom_clean = row.start AND s1.ligne = row.ligne
+MATCH (s2:station {ligne: "2"}) WHERE s2.nom_clean = row.stop AND s2.ligne = row.ligne AND s2.nom_clean <> s1.nom_clean
+MERGE (s1)-[:M2 {name: row.ligne}]->(s2);
+
+LOAD CSV WITH HEADERS FROM 'https://github.com/pauldechorgnat/cool-datasets/raw/master/ratp/liaisons.csv' AS row
+MATCH (s1:station {ligne: "3"}) WHERE s1.nom_clean = row.start AND s1.ligne = row.ligne
+MATCH (s2:station {ligne: "3"}) WHERE s2.nom_clean = row.stop AND s2.ligne = row.ligne AND s2.nom_clean <> s1.nom_clean
+MERGE (s1)-[:M3 {name: row.ligne}]->(s2);
+
+LOAD CSV WITH HEADERS FROM 'https://github.com/pauldechorgnat/cool-datasets/raw/master/ratp/liaisons.csv' AS row
+MATCH (s1:station {ligne: "4"}) WHERE s1.nom_clean = row.start AND s1.ligne = row.ligne
+MATCH (s2:station {ligne: "4"}) WHERE s2.nom_clean = row.stop AND s2.ligne = row.ligne AND s2.nom_clean <> s1.nom_clean
+MERGE (s1)-[:M4 {name: row.ligne}]->(s2);
+
+LOAD CSV WITH HEADERS FROM 'https://github.com/pauldechorgnat/cool-datasets/raw/master/ratp/liaisons.csv' AS row
+MATCH (s1:station {ligne: "5"}) WHERE s1.nom_clean = row.start AND s1.ligne = row.ligne
+MATCH (s2:station {ligne: "5"}) WHERE s2.nom_clean = row.stop AND s2.ligne = row.ligne AND s2.nom_clean <> s1.nom_clean
+MERGE (s1)-[:M5 {name: row.ligne}]->(s2);
+
+LOAD CSV WITH HEADERS FROM 'https://github.com/pauldechorgnat/cool-datasets/raw/master/ratp/liaisons.csv' AS row
+MATCH (s1:station {ligne: "6"}) WHERE s1.nom_clean = row.start AND s1.ligne = row.ligne
+MATCH (s2:station {ligne: "6"}) WHERE s2.nom_clean = row.stop AND s2.ligne = row.ligne AND s2.nom_clean <> s1.nom_clean
+MERGE (s1)-[:M6 {name: row.ligne}]->(s2);
+
+LOAD CSV WITH HEADERS FROM 'https://github.com/pauldechorgnat/cool-datasets/raw/master/ratp/liaisons.csv' AS row
+MATCH (s1:station {ligne: "7"}) WHERE s1.nom_clean = row.start AND s1.ligne = row.ligne
+MATCH (s2:station {ligne: "7"}) WHERE s2.nom_clean = row.stop AND s2.ligne = row.ligne AND s2.nom_clean <> s1.nom_clean
+MERGE (s1)-[:M7 {name: row.ligne}]->(s2);
+
+LOAD CSV WITH HEADERS FROM 'https://github.com/pauldechorgnat/cool-datasets/raw/master/ratp/liaisons.csv' AS row
+MATCH (s1:station {ligne: "8"}) WHERE s1.nom_clean = row.start AND s1.ligne = row.ligne
+MATCH (s2:station {ligne: "8"}) WHERE s2.nom_clean = row.stop AND s2.ligne = row.ligne AND s2.nom_clean <> s1.nom_clean
+MERGE (s1)-[:M8 {name: row.ligne}]->(s2);
+
+LOAD CSV WITH HEADERS FROM 'https://github.com/pauldechorgnat/cool-datasets/raw/master/ratp/liaisons.csv' AS row
+MATCH (s1:station {ligne: "9"}) WHERE s1.nom_clean = row.start AND s1.ligne = row.ligne
+MATCH (s2:station {ligne: "9"}) WHERE s2.nom_clean = row.stop AND s2.ligne = row.ligne AND s2.nom_clean <> s1.nom_clean
+MERGE (s1)-[:M9 {name: row.ligne}]->(s2);
+
+LOAD CSV WITH HEADERS FROM 'https://github.com/pauldechorgnat/cool-datasets/raw/master/ratp/liaisons.csv' AS row
+MATCH (s1:station {ligne: "10"}) WHERE s1.nom_clean = row.start AND s1.ligne = row.ligne
+MATCH (s2:station {ligne: "10"}) WHERE s2.nom_clean = row.stop AND s2.ligne = row.ligne AND s2.nom_clean <> s1.nom_clean
+MERGE (s1)-[:M10 {name: row.ligne}]->(s2);
+
+LOAD CSV WITH HEADERS FROM 'https://github.com/pauldechorgnat/cool-datasets/raw/master/ratp/liaisons.csv' AS row
+MATCH (s1:station {ligne: "11"}) WHERE s1.nom_clean = row.start AND s1.ligne = row.ligne
+MATCH (s2:station {ligne: "11"}) WHERE s2.nom_clean = row.stop AND s2.ligne = row.ligne AND s2.nom_clean <> s1.nom_clean
+MERGE (s1)-[:M11 {name: row.ligne}]->(s2);
+
+LOAD CSV WITH HEADERS FROM 'https://github.com/pauldechorgnat/cool-datasets/raw/master/ratp/liaisons.csv' AS row
+MATCH (s1:station {ligne: "12"}) WHERE s1.nom_clean = row.start AND s1.ligne = row.ligne
+MATCH (s2:station {ligne: "12"}) WHERE s2.nom_clean = row.stop AND s2.ligne = row.ligne AND s2.nom_clean <> s1.nom_clean
+MERGE (s1)-[:M12 {name: row.ligne}]->(s2);
+
+LOAD CSV WITH HEADERS FROM 'https://github.com/pauldechorgnat/cool-datasets/raw/master/ratp/liaisons.csv' AS row
+MATCH (s1:station {ligne: "13"}) WHERE s1.nom_clean = row.start AND s1.ligne = row.ligne
+MATCH (s2:station {ligne: "13"}) WHERE s2.nom_clean = row.stop AND s2.ligne = row.ligne AND s2.nom_clean <> s1.nom_clean
+MERGE (s1)-[:M13 {name: row.ligne}]->(s2);
+
+LOAD CSV WITH HEADERS FROM 'https://github.com/pauldechorgnat/cool-datasets/raw/master/ratp/liaisons.csv' AS row
+MATCH (s1:station {ligne: "14"}) WHERE s1.nom_clean = row.start AND s1.ligne = row.ligne
+MATCH (s2:station {ligne: "14"}) WHERE s2.nom_clean = row.stop AND s2.ligne = row.ligne AND s2.nom_clean <> s1.nom_clean
+MERGE (s1)-[:M14 {name: row.ligne}]->(s2);
+
+LOAD CSV WITH HEADERS FROM 'https://github.com/pauldechorgnat/cool-datasets/raw/master/ratp/liaisons.csv' AS row
+MATCH (s1:station {ligne: "3bis"}) WHERE s1.nom_clean = row.start AND s1.ligne = row.ligne
+MATCH (s2:station {ligne: "3bis"}) WHERE s2.nom_clean = row.stop AND s2.ligne = row.ligne AND s2.nom_clean <> s1.nom_clean
+MERGE (s1)-[:M3bis {name: row.ligne}]->(s2);
+
+LOAD CSV WITH HEADERS FROM 'https://github.com/pauldechorgnat/cool-datasets/raw/master/ratp/liaisons.csv' AS row
+MATCH (s1:station {ligne: "7bis"}) WHERE s1.nom_clean = row.start AND s1.ligne = row.ligne
+MATCH (s2:station {ligne: "7bis"}) WHERE s2.nom_clean = row.stop AND s2.ligne = row.ligne AND s2.nom_clean <> s1.nom_clean
+MERGE (s1)-[:M7bis {name: row.ligne}]->(s2);
+
+3/ Création des relations entre station de nom identiques:
+
+MATCH (s1:station)
+WITH s1.nom_clean as nom1, COUNT(s1) as count1
+WHERE count1>1
+MATCH (s2:station) WHERE s2.nom_clean = nom1
+MATCH (s3:station) WHERE s3.nom_clean = s2.nom_clean AND s2.ligne <> s3.ligne
+MERGE (s2)-[:M]->(s3)
+MERGE (s2)<-[:M]-(s3);
+
+4/ Création des relations ou les correspondances est possibles à pied (moins d'1km):
+
+MATCH (s1)-[*1]->(s2)
+WITH s1, s2, SQRT((s2.latitude - s1.latitude)*(s2.latitude - s1.latitude) + (s2.longitude - s1.longitude)*(s2.longitude - s1.longitude))/1000 AS distance
+WHERE distance <= 1
+MERGE (s1)-[:ALLER_A_PIED {distance: distance}]->(s2)
+MERGE (s1)<-[:ALLER_A_PIED {distance: distance}]-(s2);
