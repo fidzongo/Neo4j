@@ -1,8 +1,14 @@
 # Répresentation du plan du métro parisien avec Neo4j
 - Création d'un graphe qui permet de représenter les stations, les liaisons par train, les liaisons à pied et les correspondances a partir des données du métro parisien (avant prolongement de la ligne 14).
-- Analyse statistiques a partir du graphe crée (calcul de distance, de temps...)
-- Mise en place d'une recherche d'intinéraire en fonction de coordonnées géographiques
+- Analyse statistique à partir du graphe crée (calcul de distance, de temps, du meilleur itinéraire...)
+- Mise en place d'une recherche d'itinéraire en fonction de coordonnées géographiques
 
+# Contenu
+<ul id="menu">
+  <li><a href="https://github.com/fidzongo/Plan-du-metro-parisien-avec-Neo4j#1---cr%C3%A9ation-du-plan" title="Création des noeuds (stations de metros)">Création des noeuds (stations de metros)</a></li>
+  <li><a href="https://github.com/fidzongo/Plan-du-metro-parisien-avec-Neo4j#2---analyse-statistique" title="2 - Analyse statistique">2 - Analyse statistique</a></li>
+  <li><a href="https://github.com/fidzongo/Plan-du-metro-parisien-avec-Neo4j#3---recherche-dun-intin%C3%A9raire" title="3 - Recherche d'un itinéraire">3 - Recherche d'un itinéraire</a></li>
+</ul>
 
 # 1 - Création du plan
 
@@ -168,7 +174,7 @@ WHERE ((SQRT((s2.latitude - s1.latitude)*(s2.latitude - s1.latitude) + (s2.longi
 RETURN COUNT(s2);
 ```
 
-# 3 - Recherche d'un intinéraire
+# 3 - Recherche d'un itinéraire
 ```neo4j
 #! /usr/bin/python
 
