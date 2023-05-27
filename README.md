@@ -3,7 +3,6 @@
 - Analyse statistiques a partir du graphe crée (calcul de distance, de temps...)
 - Mise en place d'une recherche d'intinéraire en fonction de coordonnées géographiques
 
-![Alt text]([relative%20path/to/img.jpg?raw=true "Title"](https://www.bouygues-construction.com/sites/default/files/ligne_14_paris_01_1_13.jpg))
 
 # 1 - Création du plan
 
