@@ -175,7 +175,7 @@ RETURN COUNT(s2);
 ```
 
 # 3 - Recherche d'un itinéraire
-```neo4j
+```python
 #! /usr/bin/python
 
 # Import de la librairie GraphDatabase
