@@ -9,7 +9,7 @@ CREATE (:station {nom_clean : row.nom_clean ,
                     latitude: toFloat(row.x), 
                     longitude: toFloat(row.y), 
                     trafic: row.Trafic,
-					          ville: row.Ville,
-					        ligne: row.ligne
+		    ville: row.Ville,
+		    ligne: row.ligne
 });
 ```
