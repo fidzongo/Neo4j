@@ -5,7 +5,7 @@
 
 # Contenu
 <ul id="menu">
-  <li><a href="https://github.com/fidzongo/Plan-du-metro-parisien-avec-Neo4j#1---cr%C3%A9ation-du-plan" title="Création des noeuds (stations de metros)">Création des noeuds (stations de metros)</a></li>
+  <li><a href="https://github.com/fidzongo/Plan-du-metro-parisien-avec-Neo4j#1---cr%C3%A9ation-du-plan" title="1 - Création du plan">1 - Création du plan</a></li>
   <li><a href="https://github.com/fidzongo/Plan-du-metro-parisien-avec-Neo4j#2---analyse-statistique" title="2 - Analyse statistique">2 - Analyse statistique</a></li>
   <li><a href="https://github.com/fidzongo/Plan-du-metro-parisien-avec-Neo4j#3---recherche-dun-intin%C3%A9raire" title="3 - Recherche d'un itinéraire">3 - Recherche d'un itinéraire</a></li>
 </ul>
