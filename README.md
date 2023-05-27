@@ -1,5 +1,9 @@
 # Répresentation du plan du métro parisien avec Neo4j
-Création d'un graphe qui permet de représenter les stations, les liaisons par train, les liaisons à pied et les correspondances a partir des données du métro parisien (avant prolongement de la ligne 14).
+- Création d'un graphe qui permet de représenter les stations, les liaisons par train, les liaisons à pied et les correspondances a partir des données du métro parisien (avant prolongement de la ligne 14).
+- Analyse statistiques a partir du graphe crée (calcul de distance, de temps...)
+- Mise en place d'une recherche d'intinéraire en fonction de coordonnées géographiques
+
+![alt text]([http://url/to/img.png](https://www.google.com/imgres?imgurl=https%3A%2F%2Fwww.bouygues-construction.com%2Fsites%2Fdefault%2Ffiles%2Fligne_14_paris_01_1_13.jpg&tbnid=CO4zB24pdKQgZM&vet=12ahUKEwjv24LW9JT_AhXZrycCHV5gAy0QMyg8egQIARBO..i&imgrefurl=https%3A%2F%2Fwww.bouygues-construction.com%2Fnos-realisations%2Fextension-de-la-ligne-14-du-metro&docid=-0Kh4C6e4Z6UoM&w=640&h=360&q=plan%20du%20metro%20parisien%20avant%20la%20prolongation%20de%20la%20ligne%2014&safe=active&ved=2ahUKEwjv24LW9JT_AhXZrycCHV5gAy0QMyg8egQIARBO))
 
 # 1 - Création du plan
 
